@@ -74,8 +74,5 @@ func reverse(x int) int {
 }
 
 func main() {
-	fmt.Println(reverse(123))
-	fmt.Println(reverse(123000))
-	fmt.Println(reverse(-123))
-	fmt.Println(reverse(123456789))
+	fmt.Println(1 % 10)
 }
