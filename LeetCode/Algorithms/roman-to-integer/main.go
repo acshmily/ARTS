@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 /**
 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
 
@@ -44,7 +48,8 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 解释: M = 1000, CM = 900, XC = 90, IV = 4.
 */
 
-func romanToInt(s string) int {
+// 运用switch进行判断
+func romanToInt1(s string) int {
 	nlist := make([]int, 0, 4) //初始化一个字符串类型的数组储存每一个值
 	for _, v := range s {
 		switch v {
@@ -64,14 +69,52 @@ func romanToInt(s string) int {
 			nlist = append(nlist, 1000)
 		}
 	}
-	// 循环比较相邻的2个的大小
-	for i := 0; i < len(nlist)-1; i++ {
-
+	fmt.Println(nlist)
+	sum := 0
+	//// 循环比较相邻的2个的大小
+	for i := 0; i <= len(nlist)-1; i++ {
+		one := nlist[i]
+		two := 0
+		if i != len(nlist)-1 {
+			two = nlist[i+1]
+		}
+		//如果左边的数字 小于 右边的数字 则相减为新的值,并跳过two的叠加运算
+		if one < two {
+			sum = sum + two - one
+			i++
+		} else {
+			sum = sum + one
+		}
 	}
-
-	return 0
+	return sum
 
 }
+
+// 运用字符串处理
+func romanToInt(s string) int {
+	// 初始化字典
+	romanMap := map[string]int{"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+	specialMap := map[string]int{"IV": 4, "IX": 9, "XL": 40, "XC": 90, "CD": 400, "CM": 900}
+	sum := 0
+	for len(s) != 0 {
+		if len(s) > 1 {
+			char := s[0:2]
+			// 如果存在于特殊字典中
+			if v, ok := specialMap[char]; ok {
+				sum = sum + v
+				s = s[2:] // 剪裁源字符串
+			} else {
+				sum = sum + romanMap[string(s[0])]
+				s = s[1:]
+			}
+
+		} else {
+			sum = sum + romanMap[s]
+			s = s[1:]
+		}
+	}
+	return sum
+}
 func main() {
-	romanToInt("IX")
+	fmt.Println(romanToInt("III"))
 }
