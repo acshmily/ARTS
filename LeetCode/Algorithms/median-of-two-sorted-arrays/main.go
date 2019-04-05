@@ -42,7 +42,7 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 		j := halfLen - i
 		if i < iMax && nums2[j-1] > nums1[i] {
 			iMin = i + 1 // 太小
-		} else if i > iMin && nums1[j-1] > nums2[i] {
+		} else if i > iMin && nums1[i-1] > nums2[j] {
 			iMax = i - 1 // 太大
 		} else {
 			var maxLeft float64 = 0.0
@@ -62,7 +62,7 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 			} else if j == n {
 				minRight = float64(nums1[i])
 			} else {
-				minRight = math.Min(float64(nums2[j]), float64(nums1[j]))
+				minRight = math.Min(float64(nums2[j]), float64(nums1[i]))
 			}
 
 			return (maxLeft + minRight) / 2.0
@@ -72,7 +72,10 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 
 }
 func main() {
-	fmt.Println(findMedianSortedArrays([]int{1, 3}, []int{2}))
+	fmt.Println(findMedianSortedArrays([]int{1, 5}, []int{2, 3, 4, 6, 7}))
 
 	fmt.Println(8 / 2)
 }
+
+//[1,5]
+//[2,3,4,6,7]
