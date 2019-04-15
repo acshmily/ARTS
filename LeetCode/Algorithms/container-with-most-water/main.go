@@ -25,13 +25,15 @@ Output: 49
 */
 
 //面积为 底 * 高
+//
 func maxArea1(height []int) int { // 动态规划
 	max, left, right := 0, 0, len(height)-1
 	for left < right {
+		// 比较每个面积
 		max = int(math.Max(float64(max), math.Min(float64(height[left]), float64(height[right]))*float64(right-left)))
-		if height[left] < height[right] {
+		if height[left] < height[right] { // 当左指针为短板则右移一位
 			left++
-		} else {
+		} else { // 又指针为短板则左移一位
 			right--
 		}
 	}
