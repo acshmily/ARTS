@@ -63,5 +63,6 @@ func addBinary2(a string, b string) string {
 }
 
 func main() {
-	fmt.Println('1')
+	s := byte('1')
+	fmt.Print(s)
 }
