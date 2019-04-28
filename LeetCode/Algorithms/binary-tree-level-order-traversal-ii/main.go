@@ -34,7 +34,7 @@ func levelOrderBottom(root *TreeNode) [][]int {
 			return
 		}
 		if level >= len(re) { // 当有新的层
-			re = append([][]int{}, re...) // 增加容量
+			re = append([][]int{[]int{}}, re...) // 增加容量
 		}
 		n := len(re)
 		re[n-level-1] = append(re[n-level-1], root.Val)
