@@ -38,11 +38,11 @@ func returnBST(nums []int, l, r int) *TreeNode {
 	if l > r {
 		return nil
 	}
-	m := l + (r-l)/2
+	m := l + (r-l)/2 // 当前值索引
 	root := &TreeNode{}
-	root.Val = nums[m]
-	root.Left = returnBST(nums, l, m-1)
-	root.Right = returnBST(nums, m+1, r)
+	root.Val = nums[m]                   // 当前根节点值
+	root.Left = returnBST(nums, l, m-1)  // 树左节点
+	root.Right = returnBST(nums, m+1, r) // 树右节点
 	return root
 }
 func main() {
