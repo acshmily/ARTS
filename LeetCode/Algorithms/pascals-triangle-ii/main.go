@@ -16,9 +16,9 @@ Follow up:
 */
 
 func getRow(rowIndex int) []int {
-	re := make([]int, rowIndex+1)
-	re[0] = 1
-	for i := 1; i < rowIndex; i++ {
+	re := make([]int, rowIndex+1) // 构造一个一维数组
+	re[0] = 1                     // 定义边
+	for i := 1; i <= rowIndex; i++ {
 		for j := i; j >= 1; j-- {
 			re[j] = re[j] + re[j-1]
 		}
